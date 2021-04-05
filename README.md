@@ -23,17 +23,20 @@ For local recipients or if the mail has a local sender, we simply put back the m
 
 For messages where both the `envelop From` and an `envelop To` are not in our domain, we do as if the original local recipient had manually forwarded the message : 
 
- - Replace the `envelop From` by the original local recipient (`header To` or `envelop To`) (so that the relay host is happy)
+ - Replace the `envelop From` by the original local recipient (`header To` or `envelop To`) so that the relay host is happy
  - replace `header From` so that spam checkers are happy too
  - add `Reply-to` header, to make it easy to reply to the original sender
  - add "Fw:" in front of subject
  - add some text to the body, as if the mail had been manually forwarded:
-    -------- Forwarded Message --------
-Subject:        header subject
-Date:           env date
-From:           header from
-To:                     env rcpt
-    ----------------------------------
+
+```
+-------- Forwarded Message -------
+Subject: header subject
+Date: envelop date
+From: header from
+To: original local recipient
+----------------------------------
+```
 
 ## Setting up
 
