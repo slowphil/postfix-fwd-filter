@@ -1,0 +1,19 @@
+[Unit]
+Description= Automatic email forwarding filter for PostFix
+# see https://github.com/slowphil/postfix-fwd-filter 
+# and http://www.postfix.org/FILTER_README.html#advanced_filter 
+After=network-online.target
+
+[Service]
+NonBlocking=true
+ExecStart=/usr/bin/python3 -u /home/admin/fwd_filter.py
+ExecReload=/bin/kill -HUP $MAINPID
+User=mailfilter
+Restart=always
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=fwd_filter
+
+[Install]
+WantedBy=multi-user.target
+
