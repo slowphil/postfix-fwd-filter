@@ -10,7 +10,7 @@ Then you cannot directly send your emails to whom ever you wish.
 Another workaround is to use an **smtp relay server** that allows you to send a given number of free emails each month. However, such relay generally blocks emails that are not originating from your domain(s) in order to prevent spam and thereby preserving everyone's domains reputation. As an annoying consequence, without the present script, **your home server cannot do automatic email forwarding to outside addresses.**
  
 #### Why ? 
- When your home server receives a mail and the local recipient  has defined a forward address (aka a "virtual alias" in Postfix doc) in another domain, postfix injects a new mail in the system that keeps the original `envelop From` but has a new `envelop To` not in your domain. When this message reaches the relay host, it gets blocked because its `envelop From` address is not in your domain. 
+When your home server receives a mail and the local recipient  has defined a forward address (aka a "virtual alias" in Postfix doc) in another domain, postfix injects a new mail in the system that keeps the original `envelop From` but has a new `envelop To` not in your domain. When this message reaches the relay host, it gets blocked because its `envelop From` address is not in your domain. 
     
 **Note : Privacy data handling issues with smtp relays.** An smtp relay knows whom you communicate with. For instance, Mailjet/Mailgun collects a list of all addresses you send mail to, and the list is tied to your account with them. Even if you assume they do it right, you would need to regularly cleanup this list to remain RGPD-compliant.
  
